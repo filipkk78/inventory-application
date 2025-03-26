@@ -1,10 +1,11 @@
 const { Router } = require("express");
-const { addGame } = require("../controllers/submitGame.js");
-const { addGenre } = require("../controllers/submitCat.js");
+const express = require("express");
+const { addGame } = require("../controllers/newGame.js");
+const { addGenre } = require("../controllers/newGenre.js");
 const newRouter = Router();
 newRouter.use(express.urlencoded({ extended: true }));
 newRouter.get("/game", (req, res) => res.render("game-form"));
 newRouter.get("/genre", (req, res) => res.render("genre-form"));
-newRouter.post("/game", addGame);
-newRouter.post("/genre", addGenre);
+// newRouter.post("/game", addGame);
+// newRouter.post("/genre", addGenre);
 module.exports = newRouter;

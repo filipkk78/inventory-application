@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const path = require("node:path");
-const gamesRouter = require("./routes/gamesRouter.js");
-const genresRouter = require("./routes/genresRouter.js");
+// const gamesRouter = require("./routes/gamesRouter.js");
+// const genresRouter = require("./routes/genresRouter.js");
 const newRouter = require("./routes/newRouter.js");
 const updateRouter = require("./routes/updateRouter.js");
 const deleteRouter = require("./routes/deleteRouter.js");
@@ -14,12 +14,12 @@ app.use(express.urlencoded({ extended: true }));
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 
-app.use("/", (req, res) => res.render("index"));
-app.use("/games", gamesRouter);
-app.use("/genres", genresRouter);
+// app.use("/games", gamesRouter);
+// app.use("/genres", genresRouter);
 app.use("/new", newRouter);
 app.use("/update", updateRouter);
 app.use("/delete", deleteRouter);
+app.use("/", (req, res) => res.render("index"));
 
 const PORT = 3000;
 app.listen(PORT, () => {
