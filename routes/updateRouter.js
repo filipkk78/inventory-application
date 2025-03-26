@@ -1,0 +1,10 @@
+const { Router } = require("express");
+const { updateGame } = require("../controllers/deleteGame.js");
+const { updateGenre } = require("../controllers/deleteCat.js");
+const updateRouter = Router();
+updateRouter.use(express.urlencoded({ extended: true }));
+updateRouter.get("/game", (req, res) => res.render("update-game-form"));
+updateRouter.get("/genre", (req, res) => res.render("update-genre-form"));
+updateRouter.post("/game", updateGame);
+updateRouter.post("/genre", updateGenre);
+module.exports = updateRouter;
