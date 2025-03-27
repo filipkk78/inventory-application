@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS games (
 
 CREATE TABLE IF NOT EXISTS genres (
     id SERIAL PRIMARY KEY,
-    name VARCHAR UNIQUE
+    name VARCHAR UNIQUE,
+    image_url VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS devs (
@@ -35,21 +36,21 @@ CREATE TABLE IF NOT EXISTS game_dev (
 
 
 
-INSERT INTO genres (name) 
+INSERT INTO genres (name, image_url) 
 VALUES
-  ('Action'),
-  ('Adventure'),
-  ('RPG'),
-  ('Open World'),
-  ('Souls-like'),
-  ('Shooter'),
-  ('Beat em up'),
-  ('Battle Royale'),
-  ('Stealth'),
-  ('Character Action'),
-  ('Hack and slash'),
-  ('Horror'),
-  ('Survival');
+  ('Action', 'https://cdn2.steamgriddb.com/thumb/ddf4c9fc8b1476c13ecc2cfa023537fc.jpg'),
+  ('Adventure', 'https://cdn2.steamgriddb.com/thumb/73c7bfc2644df42ab5626610cd9fa168.jpg'),
+  ('RPG', 'https://cdn2.steamgriddb.com/thumb/db3eefcd127c547aeec02bb2568b9c08.jpg'),
+  ('Open World', 'https://cdn2.steamgriddb.com/thumb/5cbbfd256450bf80576fbfb267e78735.jpg'),
+  ('Souls-like', 'https://cdn2.steamgriddb.com/thumb/93c249dc5348d2c0c86dc6f717101db7.jpg'),
+  ('Shooter', 'https://cdn2.steamgriddb.com/thumb/ee0c0655c7fc3aeaba6d2f5a73beecde.jpg'),
+  ('Beat em up', 'https://cdn2.steamgriddb.com/thumb/b58b9d4519f1b935354de4fcf362e363.jpg'),
+  ('Battle Royale', 'https://cdn2.steamgriddb.com/thumb/845c4d9ac12d4ed2327259419ad14302.jpg'),
+  ('Stealth', 'https://cdn2.steamgriddb.com/thumb/893fb7ac39b26ccc803f3b2b720f2898.jpg'),
+  ('Character Action', 'https://cdn2.steamgriddb.com/thumb/031f40fb740989f693252fd6110eb7ad.jpg'),
+  ('Hack and slash', 'https://cdn2.steamgriddb.com/thumb/eb596ee53bc2bcb76e44b8f985360c59.jpg'),
+  ('Horror', 'https://cdn2.steamgriddb.com/thumb/4930377a4ade3b1e7b9e19d1ae9f87dc.jpg'),
+  ('Survival', 'https://cdn2.steamgriddb.com/thumb/0ce2616f3f9252750be158d56841f541.jpg');
 
 INSERT INTO games (title, release_date, image_url, description)
 VALUES
