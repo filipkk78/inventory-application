@@ -6,7 +6,7 @@ async function getAllGames() {
 }
 
 async function getAllGenres() {
-  const { rows } = await pool.query("SELECT * FROM genres ORDER BY title");
+  const { rows } = await pool.query("SELECT * FROM genres ORDER BY name");
   return rows;
 }
 
