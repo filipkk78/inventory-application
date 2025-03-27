@@ -7,8 +7,13 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <%- include('header') %>
-    <a href="/update/game">Update Game</a>
-    <a href="/update/genre">Update Genre</a>
+    <div class="wrapper">
+      <%- include('header') %>
+      <main>
+        <a href="/update/game">Update Game</a>
+        <a href="/update/genre">Update Genre</a>
+      </main>
+      <%- include('footer') %>
+    </div>
   </body>
 </html>
