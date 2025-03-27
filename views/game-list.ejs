@@ -10,7 +10,11 @@
     <div class="wrapper">
       <%- include('header') %>
       <main>
+        <%if (genre === undefined) { %>
         <h1>All games</h1>
+        <% } else { %>
+        <h1><%= `${genre} games` %></h1>
+        <% } %>
         <div class="game-list">
           <% games.forEach((game) => { %> <%- include('game', {game: game}); %>
           <% }); %>
