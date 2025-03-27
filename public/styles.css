@@ -16,6 +16,7 @@ header {
   padding: 1em;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 footer {
@@ -63,4 +64,10 @@ a:hover {
 .genre img {
   width: 100%;
   aspect-ratio: 2 / 3;
+  transition: transform 300ms ease-in-out;
+}
+
+.game img:hover,
+.genre img:hover {
+  transform: perspective(700px) rotateX(15deg);
 }
