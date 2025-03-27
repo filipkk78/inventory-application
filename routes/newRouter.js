@@ -1,12 +1,9 @@
 const { Router } = require("express");
 const express = require("express");
-const path = require("node:path");
 const { addGame } = require("../controllers/newGame.js");
 const { addGenre } = require("../controllers/newGenre.js");
 
 const newRouter = Router();
-const assetsPath = path.join(__dirname, "../public");
-newRouter.use(express.static(assetsPath));
 newRouter.use(express.urlencoded({ extended: true }));
 
 newRouter.get("/", (req, res) => res.render("new-index"));

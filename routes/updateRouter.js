@@ -1,12 +1,9 @@
 const { Router } = require("express");
 const express = require("express");
-const path = require("node:path");
 const { updateGame } = require("../controllers/updateGame.js");
 const { updateGenre } = require("../controllers/updateGenre.js");
 
 const updateRouter = Router();
-const assetsPath = path.join(__dirname, "../public");
-updateRouter.use(express.static(assetsPath));
 updateRouter.use(express.urlencoded({ extended: true }));
 
 updateRouter.get("/", (req, res) => res.render("update-index"));
