@@ -4,6 +4,6 @@ const { getGame } = require("../controllers/getGame.js");
 const gamesRouter = Router();
 
 gamesRouter.get("/", getGames);
-gamesRouter.get("/:gameid", getGame);
+// gamesRouter.get("/:gameid", getGame);
 
 module.exports = gamesRouter;
