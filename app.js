@@ -19,7 +19,7 @@ app.use("/genres", genresRouter);
 app.use("/new", newRouter);
 app.use("/update", updateRouter);
 app.use("/delete", deleteRouter);
-app.use("/", (req, res) => res.render("index"));
+app.use("/", (req, res) => res.redirect("/games"));
 
 const PORT = 3000;
 app.listen(PORT, () => {
