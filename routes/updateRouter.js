@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const express = require("express");
-const { updateGame } = require("../controllers/updateGame.js");
-const { updateGenre } = require("../controllers/updateGenre.js");
+// const { updateGame } = require("../controllers/updateGame.js");
+// const { updateGenre } = require("../controllers/updateGenre.js");
 
 const updateRouter = Router();
 updateRouter.use(express.urlencoded({ extended: true }));

@@ -10,9 +10,79 @@
     <div class="wrapper">
       <%- include('header') %>
       <main>
-        <h1>Game Form</h1>
+        <h1>Add new game</h1>
+        <form action="/new/game" method="post" id="gameForm">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" required />
+          <label for="devList">Developers</label>
+          <section class="form-dev-list">
+            <% devs.forEach((dev) => { %>
+            <input
+              type="checkbox"
+              name="<%=dev.name%>"
+              id="<%=dev.name%>"
+              value="<%=dev.id%>"
+            />
+            <label for="<%=dev.name%>"><%=dev.name%></label>
+            <% }); %>
+          </section>
+          <input type="hidden" name="devList" id="devList" />
+          <label for="releaseDate">Release date</label>
+          <input type="date" name="releaseDate" id="releaseDate" required />
+          <label for="genreList">Genres</label>
+          <section class="form-genre-list">
+            <% genres.forEach((genre) => { %>
+            <input
+              type="checkbox"
+              name="<%=genre.name%>"
+              id="<%=genre.name%>"
+              value="<%=genre.id%>"
+            />
+            <label for="<%=genre.name%>"><%=genre.name%></label>
+            <% }); %>
+          </section>
+          <input type="hidden" name="genreList" id="genreList" />
+          <label for="imageUrl">Image URL</label>
+          <input type="text" name="imageUrl" id="imageUrl" required />
+          <label for="description">Description</label>
+          <textarea
+            name="description"
+            id="description"
+            maxlength="200"
+            required
+          ></textarea>
+          <button type="button" id="submitBtn">Submit</button>
+        </form>
+        <%- include("partials/errors.ejs") %>
       </main>
       <%- include('footer') %>
     </div>
+    <script>
+      function getGenreArr(e) {
+        const genres = [];
+        const genreCheckboxes = document.querySelectorAll(
+          ".form-genre-list input[type='checkbox']:checked"
+        );
+        genreCheckboxes.forEach((checkbox) => {
+          genres.push(checkbox.value);
+        });
+        document.querySelector("input[name='genreList']").value =
+          JSON.stringify(genres);
+        console.log(document.querySelector("input[name='genreList']").value);
+        const devs = [];
+        const devCheckboxes = document.querySelectorAll(
+          ".form-dev-list input[type='checkbox']:checked"
+        );
+        devCheckboxes.forEach((checkbox) => {
+          devs.push(checkbox.value);
+        });
+        document.querySelector("input[name='devList']").value =
+          JSON.stringify(devs);
+        console.log(document.querySelector("input[name='devList']").value);
+        document.getElementById("gameForm").submit();
+      }
+      const submitBtn = document.querySelector("#submitBtn");
+      submitBtn.addEventListener("click", getGenreArr);
+    </script>
   </body>
 </html>

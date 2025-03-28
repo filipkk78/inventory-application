@@ -123,13 +123,12 @@ a:hover {
 }
 
 .game-details {
-  padding: 3em 8em;
+  padding: 3rem 8rem;
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 2rem;
   font-size: 1.6rem;
   align-items: center;
-
   position: relative;
   grid-row: 1 / 4;
   grid-column: 1/2;

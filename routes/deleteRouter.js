@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const express = require("express");
-const { deleteGame } = require("../controllers/deleteGame.js");
-const { deleteGenre } = require("../controllers/deleteGenre.js");
+// const { deleteGame } = require("../controllers/deleteGame.js");
+// const { deleteGenre } = require("../controllers/deleteGenre.js");
 
 const deleteRouter = Router();
 deleteRouter.use(express.urlencoded({ extended: true }));

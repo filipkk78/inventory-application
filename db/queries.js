@@ -46,6 +46,37 @@ async function getGameDevs(title) {
   return rows;
 }
 
+async function addGame(
+  title,
+  releaseDate,
+  imageUrl,
+  genreList,
+  devList,
+  description
+) {
+  await pool.query(
+    "INSERT INTO games (title, release_date, image_url, description) VALUES (($1), ($2), ($3), ($4))",
+    [title, releaseDate, imageUrl, description]
+  );
+  const game = await getGameByTitle(title);
+  const gameId = game[0].id;
+
+  for await (dev of devList) {
+    await pool.query(
+      "INSERT INTO game_dev (game_id, dev_id) VALUES (($1), ($2))",
+      [gameId, dev]
+    );
+  }
+
+  for await (genre of genreList) {
+    await pool.query(
+      "INSERT INTO game_genre (game_id, genre_id) VALUES (($1), ($2))",
+      [gameId, genre]
+    );
+  }
+  return;
+}
+
 module.exports = {
   getAllGames,
   getAllGenres,
@@ -54,4 +85,5 @@ module.exports = {
   getGameByTitle,
   getGameDevs,
   getGameGenres,
+  addGame,
 };
