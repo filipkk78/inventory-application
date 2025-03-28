@@ -11,6 +11,14 @@
       <%- include('header') %>
       <main>
         <h1>Genre Form</h1>
+        <form action="/new/genre" method="post" id="gameForm">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" required />
+          <label for="imageUrl">Image URL</label>
+          <input type="text" name="imageUrl" id="imageUrl" required />
+          <button type="submit">Submit</button>
+        </form>
+        <%- include("partials/errors.ejs") %>
       </main>
       <%- include('footer') %>
     </div>
