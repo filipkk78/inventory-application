@@ -25,6 +25,16 @@
           <aside>
             <h1><%= game.title%></h1>
             <p><%= game.description %></p>
+            <p>
+              Developed by: <% for(let i = 0; i < devs.length; i++) { if(i ===
+              devs.length-1) { %> <span> <%=devs[i].name%></span> <% } else { %>
+              <span> <%=devs[i].name%>, </span> <% }}; %>
+            </p>
+            <p>
+              Genres: <% for(let i = 0; i < genres.length; i++) { if(i ===
+              genres.length-1) { %> <span> <%=genres[i].name%></span> <% } else
+              { %> <span> <%=genres[i].name%>, </span> <% }}; %>
+            </p>
             <p>Release date: <%= `${game.release_date}`.slice(3, 15) %></p>
           </aside>
         </div>
