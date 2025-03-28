@@ -176,3 +176,37 @@ a:hover {
   width: 100%;
   filter: blur(10px);
 }
+
+.delete,
+.edit {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+}
+
+.delete svg,
+.edit svg {
+  height: 100%;
+  width: 100%;
+}
+
+.details-header,
+.genre-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details-header-btns,
+.genre-footer-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.genre-footer {
+  padding: 0.2em;
+}
