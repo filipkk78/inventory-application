@@ -10,6 +10,13 @@
     <div class="wrapper">
       <%- include('header') %>
       <main class="game-details-main">
+        <div class="background">
+          <div
+            class="background-img"
+            style="background-image: <%=` url(${game.image_url}) `%>"
+          ></div>
+          <div class="background-solid"></div>
+        </div>
         <div class="game-details">
           <img
             src="<%= game.image_url %>"
