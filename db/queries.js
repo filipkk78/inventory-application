@@ -85,6 +85,22 @@ async function addGenre(name, imageUrl) {
   return;
 }
 
+async function getGenreByName(name) {
+  const { rows } = await pool.query("SELECT * FROM genres WHERE name = ($1)", [
+    name,
+  ]);
+  return rows;
+}
+
+async function updateGenre(name, imageUrl, oldName) {
+  await pool.query(
+    "UPDATE genres SET name = ($1), image_url = ($2) WHERE name = ($3)",
+    [name, imageUrl, oldName]
+  );
+  console.log(name, imageUrl, oldName);
+  return;
+}
+
 module.exports = {
   getAllGames,
   getAllGenres,
@@ -95,4 +111,6 @@ module.exports = {
   getGameGenres,
   addGame,
   addGenre,
+  getGenreByName,
+  updateGenre,
 };

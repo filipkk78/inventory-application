@@ -42,7 +42,14 @@ exports.addGame = [
     }
     const { title, releaseDate, imageUrl, genreList, devList, description } =
       req.body;
-    db.addGame(title, releaseDate, imageUrl, genreList, devList, description);
+    await db.addGame(
+      title,
+      releaseDate,
+      imageUrl,
+      genreList,
+      devList,
+      description
+    );
     res.redirect("/");
   },
 ];

@@ -11,6 +11,27 @@
       <%- include('header') %>
       <main>
         <h1>Update Genre Form</h1>
+        <form action="<%`/update/genre/:${genre.name}`%>" method="post">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            value="<%=genre.name%>"
+          />
+          <label for="imageUrl">Image URL</label>
+          <input
+            type="text"
+            name="imageUrl"
+            id="imageUrl"
+            required
+            value="<%=genre.image_url%>"
+          />
+          <input type="hidden" name="oldName" value="<%=genre.name%>" />
+          <button type="submit">Submit</button>
+        </form>
+        <%- include("partials/errors.ejs") %>
       </main>
       <%- include('footer') %>
     </div>
