@@ -97,7 +97,16 @@ async function updateGenre(name, imageUrl, oldName) {
     "UPDATE genres SET name = ($1), image_url = ($2) WHERE name = ($3)",
     [name, imageUrl, oldName]
   );
-  console.log(name, imageUrl, oldName);
+  return;
+}
+
+async function deleteGenre(name) {
+  await pool.query("DELETE FROM genres WHERE name = ($1)", [name]);
+  return;
+}
+
+async function deleteGame(title) {
+  await pool.query("DELETE FROM games WHERE title = ($1)", [title]);
   return;
 }
 
@@ -113,4 +122,6 @@ module.exports = {
   addGenre,
   getGenreByName,
   updateGenre,
+  deleteGenre,
+  deleteGame,
 };

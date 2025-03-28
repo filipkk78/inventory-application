@@ -1,15 +1,17 @@
 const { Router } = require("express");
 const express = require("express");
-// const { deleteGame } = require("../controllers/deleteGame.js");
-// const { deleteGenre } = require("../controllers/deleteGenre.js");
+const { deleteGame } = require("../controllers/gameController.js");
+const { deleteGenre } = require("../controllers/genreController.js");
+const { deleteGenreAuth } = require("../controllers/deleteGenreAuth.js");
+const { deleteGameAuth } = require("../controllers/deleteGameAuth.js");
 
 const deleteRouter = Router();
 deleteRouter.use(express.urlencoded({ extended: true }));
 
 deleteRouter.get("/", (req, res) => res.render("delete-index"));
-deleteRouter.get("/game", (req, res) => res.render("delete-game-form"));
-deleteRouter.get("/genre", (req, res) => res.render("delete-genre-form"));
-// deleteRouter.post("/game", deleteGame);
-// deleteRouter.post("/genre", deleteGenre);
+deleteRouter.get("/game/:title", deleteGameAuth);
+deleteRouter.get("/genre/:name", deleteGenreAuth);
+deleteRouter.post("/game", deleteGame);
+deleteRouter.post("/genre", deleteGenre);
 
 module.exports = deleteRouter;

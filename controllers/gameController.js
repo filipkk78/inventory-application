@@ -1,5 +1,6 @@
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
+require("dotenv").config();
 
 const validateGame = [
   body("title")
@@ -50,6 +51,29 @@ exports.addGame = [
       devList,
       description
     );
+    res.redirect("/");
+  },
+];
+
+const validateAdminPwd = [
+  body("pwd")
+    .trim()
+    .equals(process.env.ADMIN_PWD)
+    .withMessage("Incorrect password"),
+];
+
+exports.deleteGame = [
+  validateAdminPwd,
+  async (req, res) => {
+    const { title } = req.body;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("delete-game-auth", {
+        errors: errors.array(),
+        game: await db.getGameByTitle(title),
+      });
+    }
+    await db.deleteGame(title);
     res.redirect("/");
   },
 ];
