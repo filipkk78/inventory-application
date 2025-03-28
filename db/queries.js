@@ -18,8 +18,16 @@ async function getGamesByGenre(genre) {
   return rows;
 }
 
+async function getGameByTitle(title) {
+  const { rows } = await pool.query("SELECT * FROM games WHERE title = ($1)", [
+    title,
+  ]);
+  return rows;
+}
+
 module.exports = {
   getAllGames,
   getAllGenres,
   getGamesByGenre,
+  getGameByTitle,
 };
