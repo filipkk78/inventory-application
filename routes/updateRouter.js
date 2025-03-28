@@ -12,6 +12,6 @@ updateRouter.get("/", (req, res) => res.render("update-index"));
 updateRouter.get("/game/:title", (req, res) => res.render("update-game-form"));
 updateRouter.get("/genre/:name", updateGenreForm);
 // updateRouter.post("/game", updateGame);
-updateRouter.post("/genre/:name", updateGenre);
+updateRouter.post("/genre", updateGenre);
 
 module.exports = updateRouter;
