@@ -16,8 +16,10 @@
         <h1><%= `${genre} games` %></h1>
         <% } %>
         <div class="game-list">
-          <% games.forEach((game) => { %> <%- include('game', {game: game}); %>
-          <% }); %>
+          <% if(games.length === 0) { %>
+          <p>No games with this genre found</p>
+          <% } else { games.forEach((game) => { %> <%- include('game', {game:
+          game}); %> <% }); }%>
         </div>
       </main>
       <%- include('footer') %>
