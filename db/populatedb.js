@@ -25,13 +25,13 @@ CREATE TABLE IF NOT EXISTS devs (
 );
 
 CREATE TABLE IF NOT EXISTS game_genre (
-    game_id INT REFERENCES games(id),
-    genre_id INT REFERENCES genres(id)
+    game_id INT REFERENCES games(id) ON DELETE CASCADE,
+    genre_id INT REFERENCES genres(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS game_dev (
-    game_id INT REFERENCES games(id),
-    dev_id INT REFERENCES devs(id)
+    game_id INT REFERENCES games(id) ON DELETE CASCADE,
+    dev_id INT REFERENCES devs(id) ON DELETE CASCADE
 );
 
 
