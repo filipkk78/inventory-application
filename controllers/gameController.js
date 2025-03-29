@@ -35,9 +35,9 @@ const validateGame = [
 exports.addGame = [
   validateGame,
   async (req, res) => {
-    res.set("Content-Type", "application/json");
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      res.set("Content-Type", "text/html");
       const genres = await db.getAllGenres();
       const devs = await db.getAllDevs();
       return res.status(400).render("game-form", {
@@ -46,6 +46,7 @@ exports.addGame = [
         errors: errors.array(),
       });
     }
+    res.set("Content-Type", "application/json");
     const { title, releaseDate, imageUrl, genreList, devList, description } =
       req.body;
     await db.addGame(
