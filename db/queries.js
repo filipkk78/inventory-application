@@ -32,7 +32,7 @@ async function getGameByTitle(title) {
 
 async function getGameGenres(title) {
   const { rows } = await pool.query(
-    "SELECT name FROM genres WHERE id IN (SELECT genre_id FROM game_genre WHERE game_id = (SELECT id FROM games WHERE title = ($1)))",
+    "SELECT name FROM genres WHERE id IN (SELECT genre_id FROM game_genre WHERE game_id = (SELECT id FROM games WHERE title = ($1) LIMIT 1))",
     [title]
   );
   return rows;
@@ -40,7 +40,7 @@ async function getGameGenres(title) {
 
 async function getGameDevs(title) {
   const { rows } = await pool.query(
-    "SELECT name FROM devs WHERE id IN (SELECT dev_id FROM game_dev WHERE game_id = (SELECT id FROM games WHERE title = ($1)))",
+    "SELECT name FROM devs WHERE id IN (SELECT dev_id FROM game_dev WHERE game_id = (SELECT id FROM games WHERE title = ($1) LIMIT 1))",
     [title]
   );
   return rows;
