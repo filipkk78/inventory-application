@@ -35,17 +35,39 @@ exports.addGenre = [
   },
 ];
 
+const validateGenreUpdate = [
+  body("name")
+    .trim()
+    .isLength({ min: 5, max: 30 })
+    .withMessage(`Name must be between 5 and 30 characters`),
+  body("imageUrl")
+    .optional()
+    .default("https://placehold.co/600x900?text=Genre+Placeholder&font=roboto")
+    .trim()
+    .isURL()
+    .withMessage("Image url must be an url"),
+  body("pwd")
+    .trim()
+    .equals(process.env.ADMIN_PWD)
+    .withMessage("Incorrect password"),
+  body("oldName")
+    .optional()
+    .trim()
+    .isLength({ min: 5, max: 30 })
+    .withMessage(`Name must be between 5 and 30 characters`),
+];
+
 exports.updateGenre = [
-  validateGenre,
+  validateGenreUpdate,
   async (req, res) => {
+    const { name, imageUrl, oldName } = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("update-genre-form", {
         errors: errors.array(),
-        genre: await db.getGenreByName(oldName),
+        genre: (await db.getGenreByName(oldName)).at(0),
       });
     }
-    const { name, imageUrl, oldName } = req.body;
     await db.updateGenre(name, imageUrl, oldName);
     res.redirect("/");
   },

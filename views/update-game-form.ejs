@@ -11,7 +11,7 @@
       <%- include('header') %>
       <main class="genre-form-main">
         <div class="genre-form-wrapper">
-          <h1>Update Game <%= game.title%></h1>
+          <h1>Update Game <%=game.title%></h1>
           <form
             action="/update/game"
             method="post"
@@ -41,7 +41,6 @@
               type="text"
               name="imageUrl"
               id="imageUrl"
-              required
               value="<%=game.image_url%>"
             />
             <label for="description"
@@ -53,7 +52,7 @@
               maxlength="200"
               required
             >
-          <%=game.description%></textarea
+<%=game.description.trim()%></textarea
             >
             <label for="devList">Developers <span class="req">*</span></label>
             <section class="form-dev-list">
@@ -94,6 +93,8 @@
               name="selectedGenres"
               value="<%=JSON.stringify(selectedGenres)%>"
             />
+            <label for="pwd">Admin password</label>
+            <input type="password" name="pwd" id="pwd" />
             <button type="submit" id="submitBtn">Submit</button>
           </form>
           <%- include("partials/errors.ejs") %>

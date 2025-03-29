@@ -75,7 +75,7 @@ exports.deleteGame = [
     if (!errors.isEmpty()) {
       return res.status(400).render("delete-game-auth", {
         errors: errors.array(),
-        game: await db.getGameByTitle(title),
+        game: (await db.getGameByTitle(title)).at(0),
       });
     }
     await db.deleteGame(title);
@@ -83,8 +83,42 @@ exports.deleteGame = [
   },
 ];
 
+const validateGameUpdate = [
+  body("title")
+    .trim()
+    .isLength({ min: 1, max: 80 })
+    .withMessage(`Title must be between 1 and 80 characters`),
+  body("releaseDate")
+    .trim()
+    .isISO8601()
+    .withMessage(`Date must be in the yyyy-mm-dd format`),
+  body("imageUrl")
+    .optional()
+    .default("https://placehold.co/600x900?text=Game+Placeholder&font=roboto")
+    .trim()
+    .isURL()
+    .withMessage("Image url must be an url"),
+  body("genreList")
+    .customSanitizer((value) => JSON.parse(value))
+    .toArray()
+    .isArray({ min: 1 })
+    .withMessage("You must select at least one genre"),
+  body("devList")
+    .customSanitizer((value) => JSON.parse(value))
+    .toArray()
+    .isArray({ min: 1 })
+    .withMessage("You must select at least one developer"),
+  body("description")
+    .isString({ min: 30, max: 200 })
+    .withMessage("Description must be between 30 and 200 characters long"),
+  body("pwd")
+    .trim()
+    .equals(process.env.ADMIN_PWD)
+    .withMessage("Incorrect password"),
+];
+
 exports.updateGame = [
-  validateGame,
+  validateGameUpdate,
   async (req, res) => {
     res.set("Content-Type", "application/json");
     const errors = validationResult(req);
@@ -95,12 +129,13 @@ exports.updateGame = [
       const selectedGenres = await db.getGameGenres(title);
       const selectedDevs = await db.getGameDevs(title);
       const game = await db.getGameByTitle(title);
-      return res.status(400).render("game-form", {
+      res.set("Content-Type", "text/html");
+      return res.status(400).render("update-game-form", {
         genres: genres,
         devs: devs,
         selectedGenres: selectedGenres,
         selectedDevs: selectedDevs,
-        game: game,
+        game: game[0],
         errors: errors.array(),
       });
     }

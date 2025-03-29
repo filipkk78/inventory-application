@@ -26,9 +26,10 @@
               type="text"
               name="imageUrl"
               id="imageUrl"
-              required
               value="<%=genre.image_url%>"
             />
+            <label for="pwd">Admin password</label>
+            <input type="password" name="pwd" id="pwd" />
             <input type="hidden" name="oldName" value="<%=genre.name%>" />
             <button type="submit">Submit</button>
           </form>
