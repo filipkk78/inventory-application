@@ -8,7 +8,6 @@ const { deleteGameAuth } = require("../controllers/deleteGameAuth.js");
 const deleteRouter = Router();
 deleteRouter.use(express.urlencoded({ extended: true }));
 
-deleteRouter.get("/", (req, res) => res.render("delete-index"));
 deleteRouter.get("/game/:title", deleteGameAuth);
 deleteRouter.get("/genre/:name", deleteGenreAuth);
 deleteRouter.post("/game", deleteGame);

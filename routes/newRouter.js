@@ -8,7 +8,6 @@ const { newGenreForm } = require("../controllers/newGenreForm.js");
 const newRouter = Router();
 newRouter.use(express.urlencoded({ extended: true }));
 
-newRouter.get("/", (req, res) => res.render("new-index"));
 newRouter.get("/game", newGameForm);
 newRouter.get("/genre", newGenreForm);
 newRouter.post("/game", addGame);

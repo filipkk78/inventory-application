@@ -11,10 +11,13 @@
       <%- include('header') %>
       <main>
         <h1>All genres</h1>
-        <div class="game-list">
+        <section class="game-list">
           <% genres.forEach((genre) => { %> <%- include('genre', {genre:
           genre}); %> <% }); %>
-        </div>
+          <article class="new">
+            <a href="/new/genre">+</a>
+          </article>
+        </section>
       </main>
       <%- include('footer') %>
     </div>

@@ -8,7 +8,6 @@ const { updateGenreForm } = require("../controllers/updateGenreForm.js");
 const updateRouter = Router();
 updateRouter.use(express.urlencoded({ extended: true }));
 
-updateRouter.get("/", (req, res) => res.render("update-index"));
 updateRouter.get("/game/:title", updateGameForm);
 updateRouter.get("/genre/:name", updateGenreForm);
 updateRouter.post("/game", updateGame);

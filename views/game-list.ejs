@@ -20,6 +20,9 @@
           <p>No games with this genre found</p>
           <% } else { games.forEach((game) => { %> <%- include('game', {game:
           game}); %> <% }); }%>
+          <article class="new">
+            <a href="/new/game">+</a>
+          </article>
         </div>
       </main>
       <%- include('footer') %>
