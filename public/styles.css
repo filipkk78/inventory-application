@@ -233,3 +233,103 @@ a:hover {
   text-decoration: none;
   color: rgb(62, 211, 24);
 }
+
+.genre-form-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.genre-form-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.genre-form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 40ch;
+  gap: 0.5em;
+  grid-template-columns: 1fr;
+}
+
+.req {
+  color: red;
+}
+
+.genre-form label {
+  padding: 0.2em;
+}
+
+.genre-form input {
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  background-color: transparent;
+  height: 2rem;
+  padding: 0.5em;
+  color: white;
+}
+
+.genre-form button {
+  background-color: white;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.genre-form textarea {
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  background-color: transparent;
+  height: 10.5rem;
+  padding: 0.5em;
+  color: white;
+  resize: none;
+}
+
+.checkbox-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid white;
+  border-radius: 0.15em;
+  color: rgb(62, 211, 24);
+  vertical-align: -2px;
+  position: relative;
+}
+
+input[type="checkbox"]::before {
+  content: "×";
+  position: absolute;
+  font-size: 1.4em;
+  left: 2px;
+  top: -8px;
+  visibility: hidden;
+}
+
+input[type="checkbox"]:checked::before {
+  visibility: visible;
+}

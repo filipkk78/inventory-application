@@ -9,48 +9,57 @@
   <body>
     <div class="wrapper">
       <%- include('header') %>
-      <main>
+      <main class="genre-form-main">
         <h1>Add new game</h1>
-        <form action="/new/game" method="post" id="gameForm">
-          <label for="title">Title</label>
+        <form action="/new/game" method="post" id="gameForm" class="genre-form">
+          <label for="title">Title <span class="req">*</span></label>
           <input type="text" name="title" id="title" required />
-          <label for="devList">Developers</label>
-          <section class="form-dev-list">
-            <% devs.forEach((dev) => { %>
-            <input
-              type="checkbox"
-              name="<%=dev.name%>"
-              id="<%=dev.name%>"
-              value="<%=dev.id%>"
-            />
-            <label for="<%=dev.name%>"><%=dev.name%></label>
-            <% }); %>
-          </section>
-          <input type="hidden" name="devList" id="devList" />
-          <label for="releaseDate">Release date</label>
+          <label for="releaseDate"
+            >Release date <span class="req">*</span></label
+          >
           <input type="date" name="releaseDate" id="releaseDate" required />
-          <label for="genreList">Genres</label>
-          <section class="form-genre-list">
-            <% genres.forEach((genre) => { %>
-            <input
-              type="checkbox"
-              name="<%=genre.name%>"
-              id="<%=genre.name%>"
-              value="<%=genre.id%>"
-            />
-            <label for="<%=genre.name%>"><%=genre.name%></label>
-            <% }); %>
-          </section>
-          <input type="hidden" name="genreList" id="genreList" />
-          <label for="imageUrl">Image URL</label>
+          <label for="imageUrl">Image URL </label>
           <input type="text" name="imageUrl" id="imageUrl" />
-          <label for="description">Description</label>
+          <label for="description"
+            >Description <span class="req">*</span></label
+          >
           <textarea
             name="description"
             id="description"
             maxlength="200"
             required
           ></textarea>
+          <label for="devList">Developers <span class="req">*</span></label>
+          <section class="form-dev-list">
+            <% devs.forEach((dev) => { %>
+            <div class="checkbox-wrapper">
+              <input
+                type="checkbox"
+                name="<%=dev.name%>"
+                id="<%=dev.name%>"
+                value="<%=dev.id%>"
+              />
+              <label for="<%=dev.name%>"><%=dev.name%></label>
+            </div>
+            <% }); %>
+          </section>
+          <input type="hidden" name="devList" id="devList" />
+
+          <label for="genreList">Genres <span class="req">*</span></label>
+          <section class="form-genre-list">
+            <% genres.forEach((genre) => { %>
+            <div class="checkbox-wrapper">
+              <input
+                type="checkbox"
+                name="<%=genre.name%>"
+                id="<%=genre.name%>"
+                value="<%=genre.id%>"
+              />
+              <label for="<%=genre.name%>"><%=genre.name%></label>
+            </div>
+            <% }); %>
+          </section>
+          <input type="hidden" name="genreList" id="genreList" />
           <button type="button" id="submitBtn">Submit</button>
         </form>
         <%- include("partials/errors.ejs") %>

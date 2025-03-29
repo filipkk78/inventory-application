@@ -9,82 +9,95 @@
   <body>
     <div class="wrapper">
       <%- include('header') %>
-      <main>
-        <h1>Update Game Form</h1>
-        <form action="/update/game" method="post" id="gameForm">
-          <label for="title">Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            required
-            value="<%=game.title%>"
-          />
-          <label for="devList">Developers</label>
-          <section class="form-dev-list">
-            <% devs.forEach((dev) => { %>
-            <input
-              type="checkbox"
-              name="<%=dev.name%>"
-              id="<%=dev.name%>"
-              value="<%=dev.id%>"
-            />
-            <label for="<%=dev.name%>"><%=dev.name%></label>
-            <% }); %>
-          </section>
-          <input type="hidden" name="devList" id="devList" />
-          <label for="releaseDate">Release date</label>
-          <input
-            type="date"
-            name="releaseDate"
-            id="releaseDate"
-            required
-            value="<%=game.release_date.toISOString().slice(0, 10)%>"
-          />
-          <label for="genreList">Genres</label>
-          <section class="form-genre-list">
-            <% genres.forEach((genre) => { %>
-            <input
-              type="checkbox"
-              name="<%=genre.name%>"
-              id="<%=genre.name%>"
-              value="<%=genre.id%>"
-            />
-            <label for="<%=genre.name%>"><%=genre.name%></label>
-            <% }); %>
-          </section>
-          <input type="hidden" name="genreList" id="genreList" />
-          <label for="imageUrl">Image URL</label>
-          <input
-            type="text"
-            name="imageUrl"
-            id="imageUrl"
-            required
-            value="<%=game.image_url%>"
-          />
-          <label for="description">Description</label>
-          <textarea
-            name="description"
-            id="description"
-            maxlength="200"
-            required
+      <main class="genre-form-main">
+        <div class="genre-form-wrapper">
+          <h1>Update Game <%= game.title%></h1>
+          <form
+            action="/update/game"
+            method="post"
+            id="gameForm"
+            class="genre-form"
           >
-<%=game.description%></textarea
-          >
-          <input type="hidden" name="oldTitle" value="<%=game.title%>" />
-          <input
-            type="hidden"
-            name="selectedDevs"
-            value="<%=JSON.stringify(selectedDevs)%>"
-          />
-          <input
-            type="hidden"
-            name="selectedGenres"
-            value="<%=JSON.stringify(selectedGenres)%>"
-          />
-          <button type="submit" id="submitBtn">Submit</button>
-        </form>
-        <%- include("partials/errors.ejs") %>
+            <label for="title">Title <span class="req">*</span></label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              required
+              value="<%=game.title%>"
+            />
+            <label for="releaseDate"
+              >Release date <span class="req">*</span></label
+            >
+            <input
+              type="date"
+              name="releaseDate"
+              id="releaseDate"
+              required
+              value="<%=game.release_date.toISOString().slice(0, 10)%>"
+            />
+            <label for="imageUrl">Image URL</label>
+            <input
+              type="text"
+              name="imageUrl"
+              id="imageUrl"
+              required
+              value="<%=game.image_url%>"
+            />
+            <label for="description"
+              >Description <span class="req">*</span></label
+            >
+            <textarea
+              name="description"
+              id="description"
+              maxlength="200"
+              required
+            >
+          <%=game.description%></textarea
+            >
+            <label for="devList">Developers <span class="req">*</span></label>
+            <section class="form-dev-list">
+              <% devs.forEach((dev) => { %>
+              <input
+                type="checkbox"
+                name="<%=dev.name%>"
+                id="<%=dev.name%>"
+                value="<%=dev.id%>"
+              />
+              <label for="<%=dev.name%>"><%=dev.name%></label>
+              <% }); %>
+            </section>
+            <input type="hidden" name="devList" id="devList" />
+
+            <label for="genreList">Genres <span class="req">*</span></label>
+            <section class="form-genre-list">
+              <% genres.forEach((genre) => { %>
+              <input
+                type="checkbox"
+                name="<%=genre.name%>"
+                id="<%=genre.name%>"
+                value="<%=genre.id%>"
+              />
+              <label for="<%=genre.name%>"><%=genre.name%></label>
+              <% }); %>
+            </section>
+            <input type="hidden" name="genreList" id="genreList" />
+
+            <input type="hidden" name="oldTitle" value="<%=game.title%>" />
+            <input
+              type="hidden"
+              name="selectedDevs"
+              value="<%=JSON.stringify(selectedDevs)%>"
+            />
+            <input
+              type="hidden"
+              name="selectedGenres"
+              value="<%=JSON.stringify(selectedGenres)%>"
+            />
+            <button type="submit" id="submitBtn">Submit</button>
+          </form>
+          <%- include("partials/errors.ejs") %>
+        </div>
       </main>
       <%- include('footer') %>
     </div>

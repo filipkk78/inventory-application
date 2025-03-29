@@ -9,15 +9,17 @@
   <body>
     <div class="wrapper">
       <%- include('header') %>
-      <main>
-        <h1>Are you sure you want to delete the game <%= game.title %>?</h1>
-        <form action="/delete/game" method="post">
-          <label for="pwd">Enter admin password to continue</label>
-          <input type="password" name="pwd" id="pwd" />
-          <input type="hidden" name="title" value="<%=game.title%>" />
-          <button type="submit">Submit</button>
-        </form>
-        <%- include("partials/errors.ejs") %>
+      <main class="genre-form-main">
+        <div class="genre-form-wrapper">
+          <h1>Are you sure you want to delete the game <%= game.title %>?</h1>
+          <form action="/delete/game" method="post" class="genre-form">
+            <label for="pwd">Enter admin password to continue</label>
+            <input type="password" name="pwd" id="pwd" />
+            <input type="hidden" name="title" value="<%=game.title%>" />
+            <button type="submit">Submit</button>
+          </form>
+          <%- include("partials/errors.ejs") %>
+        </div>
       </main>
       <%- include('footer') %>
     </div>

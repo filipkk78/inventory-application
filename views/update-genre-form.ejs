@@ -9,29 +9,31 @@
   <body>
     <div class="wrapper">
       <%- include('header') %>
-      <main>
-        <h1>Update Genre Form</h1>
-        <form action="/update/genre" method="post">
-          <label for="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            required
-            value="<%=genre.name%>"
-          />
-          <label for="imageUrl">Image URL</label>
-          <input
-            type="text"
-            name="imageUrl"
-            id="imageUrl"
-            required
-            value="<%=genre.image_url%>"
-          />
-          <input type="hidden" name="oldName" value="<%=genre.name%>" />
-          <button type="submit">Submit</button>
-        </form>
-        <%- include("partials/errors.ejs") %>
+      <main class="genre-form-main">
+        <div class="genre-form-wrapper">
+          <h1>Update Genre <%=genre.name%></h1>
+          <form action="/update/genre" method="post" class="genre-form">
+            <label for="name">Name <span class="req">*</span></label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              value="<%=genre.name%>"
+            />
+            <label for="imageUrl">Image URL</label>
+            <input
+              type="text"
+              name="imageUrl"
+              id="imageUrl"
+              required
+              value="<%=genre.image_url%>"
+            />
+            <input type="hidden" name="oldName" value="<%=genre.name%>" />
+            <button type="submit">Submit</button>
+          </form>
+          <%- include("partials/errors.ejs") %>
+        </div>
       </main>
       <%- include('footer') %>
     </div>
