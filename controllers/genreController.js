@@ -7,7 +7,12 @@ const validateGenre = [
     .trim()
     .isLength({ min: 5, max: 30 })
     .withMessage(`Name must be between 5 and 30 characters`),
-  body("imageUrl").trim().isURL().withMessage("Image url must be an url"),
+  body("imageUrl")
+    .optional()
+    .default("https://placehold.co/600x900?text=Genre+Placeholder&font=roboto")
+    .trim()
+    .isURL()
+    .withMessage("Image url must be an url"),
   body("oldName")
     .optional()
     .trim()

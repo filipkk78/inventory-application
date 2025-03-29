@@ -11,7 +11,12 @@ const validateGame = [
     .trim()
     .isISO8601()
     .withMessage(`Date must be in the yyyy-mm-dd format`),
-  body("imageUrl").trim().isURL().withMessage("Image url must be an url"),
+  body("imageUrl")
+    .optional()
+    .default("https://placehold.co/600x900?text=Game+Placeholder&font=roboto")
+    .trim()
+    .isURL()
+    .withMessage("Image url must be an url"),
   body("genreList")
     .customSanitizer((value) => JSON.parse(value))
     .toArray()
