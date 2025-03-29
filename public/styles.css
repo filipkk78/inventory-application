@@ -333,3 +333,43 @@ input[type="checkbox"]::before {
 input[type="checkbox"]:checked::before {
   visibility: visible;
 }
+
+@media (max-width: 1200px) {
+  .game-details {
+    grid-template-columns: 2fr 3fr;
+  }
+  .game-details aside {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .game-details {
+    padding: 1em 2em;
+  }
+  .game-details-main {
+    padding: 1em 0;
+  }
+}
+
+@media (max-width: 750px) {
+  .game-details {
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .game-details aside {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .game-details {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+  }
+  .game-details aside {
+    font-size: 1rem;
+  }
+  header nav {
+    font-size: 1rem;
+  }
+}
