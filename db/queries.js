@@ -110,18 +110,53 @@ async function deleteGame(title) {
   return;
 }
 
+async function updateGame(
+  title,
+  releaseDate,
+  imageUrl,
+  genreList,
+  devList,
+  description,
+  oldTitle
+) {
+  await pool.query(
+    "UPDATE games SET title = ($1), release_date = ($2), image_url = ($3), description = ($4) WHERE title = ($5)",
+    [title, releaseDate, imageUrl, description, oldTitle]
+  );
+  const game = await getGameByTitle(title);
+  const gameId = game[0].id;
+
+  await pool.query("DELETE FROM game_dev WHERE game_id = ($1)", [gameId]);
+  for await (dev of devList) {
+    await pool.query(
+      "INSERT INTO game_dev (game_id, dev_id) VALUES (($1), ($2))",
+      [gameId, dev]
+    );
+  }
+
+  await pool.query("DELETE FROM game_genre WHERE game_id = ($1)", [gameId]);
+  for await (genre of genreList) {
+    await pool.query(
+      "INSERT INTO game_genre (game_id, genre_id) VALUES (($1), ($2))",
+      [gameId, genre]
+    );
+  }
+  return;
+}
+
 module.exports = {
   getAllGames,
   getAllGenres,
   getAllDevs,
   getGamesByGenre,
   getGameByTitle,
+  getGenreByName,
   getGameDevs,
   getGameGenres,
   addGame,
+  deleteGame,
+  updateGame,
   addGenre,
-  getGenreByName,
   updateGenre,
   deleteGenre,
-  deleteGame,
 };

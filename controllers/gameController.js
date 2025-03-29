@@ -77,3 +77,46 @@ exports.deleteGame = [
     res.redirect("/");
   },
 ];
+
+exports.updateGame = [
+  validateGame,
+  async (req, res) => {
+    res.set("Content-Type", "application/json");
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const { title } = req.body;
+      const genres = await db.getAllGenres();
+      const devs = await db.getAllDevs();
+      const selectedGenres = await db.getGameGenres(title);
+      const selectedDevs = await db.getGameDevs(title);
+      const game = await db.getGameByTitle(title);
+      return res.status(400).render("game-form", {
+        genres: genres,
+        devs: devs,
+        selectedGenres: selectedGenres,
+        selectedDevs: selectedDevs,
+        game: game,
+        errors: errors.array(),
+      });
+    }
+    const {
+      title,
+      releaseDate,
+      imageUrl,
+      genreList,
+      devList,
+      description,
+      oldTitle,
+    } = req.body;
+    await db.updateGame(
+      title,
+      releaseDate,
+      imageUrl,
+      genreList,
+      devList,
+      description,
+      oldTitle
+    );
+    res.redirect("/");
+  },
+];
